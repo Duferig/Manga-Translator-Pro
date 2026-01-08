@@ -1,0 +1,5 @@
+{
+  "name": "Manga Translator Pro",
+  "description": "Автоматический переводчик манги с использованием Gemini Nano Banana Pro. Загрузите сканы, и приложение переведет их, склеит и подготовит для чтения.",
+  "requestFramePermissions": []
+}
