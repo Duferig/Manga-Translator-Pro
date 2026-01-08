@@ -1,92 +1,92 @@
 # 🎌 Manga Translator Pro
 
-**Manga Translator Pro** — это современное веб-приложение для автоматического перевода манги и манхвы (вебтунов) с сохранением оригинального стиля.
+**Manga Translator Pro** is a modern web application for automatically translating manga and manhwa (webtoons) while preserving the original art style.
 
-Приложение использует новейшие мультимодальные модели Google **Gemini 3 (Nano Banana Pro)** для распознавания текста, понимания контекста и перерисовки облачков с текстом (in-painting) на лету.
-
----
-
-## ✨ Возможности
-
-### 🧠 Умный ИИ
-*   **Gemini 3 Pro (Nano Banana Pro)**: Используется для финальной отрисовки. Модель "стирает" иностранный текст и вписывает перевод, сохраняя фон, текстуру бумаги и стиль рисовки (Pixel Perfect).
-*   **Context Aware**: Приложение "помнит" имена персонажей и специфические термины между страницами одной главы, создавая временный глоссарий для согласованного перевода.
-
-### 🔪 Smart Hybrid Slicing (для Манхвы)
-Длинные вертикальные стрипы (Webtoons) слишком велики для обработки целиком. Мы используем гибридный подход:
-1.  **AI Vision**: Gemini 3 Flash сканирует изображение и находит "безопасные зоны" (промежутки между фреймами, размытый фон), где можно сделать разрез без повреждения лиц или текста.
-2.  **Алгоритмическая точность**: Математический алгоритм анализирует пиксели в предложенных зонах, чтобы сделать разрез идеально чистым.
-
-### 🛠 Функционал
-*   **Поддержка форматов**: Загрузка `.jpg`, `.png`, `.webp`.
-*   **Режимы**:
-    *   *Манга*: Обработка страниц целиком.
-    *   *Манхва*: Автоматическая нарезка длинных полотен на чанки и их последующая склейка.
-*   **Экспорт**:
-    *   Скачивание главы одним **PDF** файлом.
-    *   Скачивание "Длинного стрипа" (Long Strip) одной картинкой.
-*   **Мультиязычность**: Интерфейс и перевод доступны на **Русском** и **Английском** языках.
+The application leverages Google's latest multimodal **Gemini 3 (Nano Banana Pro)** models to recognize text, understand context, and repaint speech bubbles (in-painting) on the fly.
 
 ---
 
-## 🚀 Как это работает (под капотом)
+## ✨ Features
 
-1.  **Загрузка**: Вы загружаете файлы. Если это манхва, она автоматически нарезается на части.
-2.  **Анализ (Flash Pipeline)**:
-    *   Легкая модель `gemini-3-flash` быстро сканирует страницу.
-    *   Она находит весь текст, переводит его с учетом предыдущего контекста и формирует инструкцию для отрисовки.
-3.  **Генерация (Pro Pipeline)**:
-    *   Тяжелая модель `gemini-3-pro-image-preview` получает картинку и инструкцию.
-    *   Она генерирует новую версию изображения, где текст заменен на переведенный.
-4.  **Сборка**: Отрендеренные части собираются обратно в страницу или PDF.
+### 🧠 Advanced AI
+*   **Gemini 3 Pro (Nano Banana Pro)**: Used for the final rendering. The model "erases" foreign text and seamlessly blends the translated text into the speech bubbles, preserving the background art, paper texture, and original style (Pixel Perfect).
+*   **Context Aware**: The app "remembers" character names and specific terminology across pages within a chapter, creating a temporary glossary to ensure translation consistency.
+
+### 🔪 Smart Hybrid Slicing (for Manhwa)
+Long vertical webtoon strips are often too large for AI models to process in one go. We use a hybrid approach:
+1.  **AI Vision**: Gemini 3 Flash scans the image to identify "safe zones" (gutters between panels, static backgrounds) where a cut can be made without slicing through faces or text.
+2.  **Algorithmic Precision**: A mathematical algorithm analyzes pixel energy in the suggested zones to execute a perfectly clean cut.
+
+### 🛠 Core Functionality
+*   **File Support**: Upload `.jpg`, `.png`, or `.webp` files.
+*   **Modes**:
+    *   *Manga*: Processes pages as whole images.
+    *   *Manhwa*: Automatically slices long vertical strips into chunks and stitches them back together.
+*   **Export**:
+    *   Download the full chapter as a single **PDF**.
+    *   Download as a stitched **Long Strip** (PNG).
+*   **Multi-language**: UI and Target Translation available in **English** and **Russian**.
 
 ---
 
-## 🛠 Установка и запуск
+## 🚀 How It Works (Under the Hood)
 
-Для запуска вам понадобится установленный [Node.js](https://nodejs.org/).
+1.  **Upload**: You upload the files. If "Manhwa" mode is selected, files are automatically analyzed and sliced.
+2.  **Analysis (Flash Pipeline)**:
+    *   The lightweight `gemini-3-flash` model scans the page.
+    *   It detects all text, translates it (referencing the session glossary), and generates detailed instructions for the image generator.
+3.  **Generation (Pro Pipeline)**:
+    *   The powerful `gemini-3-pro-image-preview` model receives the image and the instructions.
+    *   It generates a new version of the image where the original text is erased and replaced with the translation.
+4.  **Assembly**: The processed chunks are stitched back together or compiled into a PDF.
 
-1.  **Клонируйте репозиторий:**
+---
+
+## 🛠 Installation & Setup
+
+You will need [Node.js](https://nodejs.org/) installed on your machine.
+
+1.  **Clone the repository:**
     ```bash
     git clone https://github.com/your-username/manga-translator-pro.git
     cd manga-translator-pro
     ```
 
-2.  **Установите зависимости:**
+2.  **Install dependencies:**
     ```bash
     npm install
     ```
 
-3.  **Запустите проект:**
+3.  **Start the application:**
     ```bash
     npm start
     ```
 
-Приложение откроется в браузере по адресу `http://localhost:3000`.
+The app will open in your browser at `http://localhost:3000`.
 
 ---
 
 ## 🔑 API Key
 
-Для работы приложения **необходим API ключ Google Gemini**.
+**A Google Gemini API Key is required.**
 
-Приложение работает полностью на клиенте (в браузере). Ваш ключ **нигде не сохраняется** и используется только для прямых запросов к API Google во время текущей сессии.
+This application runs entirely on the client-side (in your browser). Your API key is **never saved** to any server and is only used for direct requests to the Google API during your active session.
 
-При запуске приложение попросит вас выбрать ключ через безопасный интерфейс Google AI Studio. Убедитесь, что у вас есть доступ к моделям серии `gemini-3-pro-image-preview`.
+Upon launching the app, you will be prompted to select a key via the secure Google AI Studio interface. Ensure you have access to the `gemini-3-pro-image-preview` model series.
 
 ---
 
-## 📦 Стек технологий
+## 📦 Tech Stack
 
-*   **Frontend**: React 19, TypeScript, Vite (или CRA).
+*   **Frontend**: React 19, TypeScript, Vite (or CRA).
 *   **Styling**: TailwindCSS.
 *   **AI SDK**: Google GenAI SDK (`@google/genai`).
 *   **PDF Generation**: jsPDF.
 
 ---
 
-## ⚠️ Дисклеймер
+## ⚠️ Disclaimer
 
-Проект создан в образовательных целях для демонстрации возможностей мультимодальных моделей Gemini. Качество перевода и перерисовки зависит от сложности исходного материала.
+This project was created for educational purposes to demonstrate the capabilities of Gemini's multimodal models. The quality of translation and in-painting depends on the complexity of the source material.
 
-Автор не несет ответственности за использование приложения для нарушения авторских прав. Пожалуйста, поддерживайте авторов манги, покупая официальные издания.
+The author is not responsible for any copyright infringement resulting from the use of this tool. Please support manga authors by purchasing official releases.
